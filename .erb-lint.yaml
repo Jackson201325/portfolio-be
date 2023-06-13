@@ -1,0 +1,22 @@
+---
+linters:
+  ClosingErbTagIndent:
+    enabled: true
+  ExtraNewline:
+    enabled: true
+  FinalNewline:
+    enabled: true
+  NoJavascriptTagHelper:
+    enabled: true
+  ParserErrors:
+    enabled: true
+  RightTrim:
+    enabled: true
+  SelfClosingTag:
+    enabled: true
+  SpaceAroundEquals:
+    enabled: true
+  SpaceInHtmlTag:
+    enabled: true
+  TrailingWhitespace:
+    enabled: true
