@@ -1,2 +1,10 @@
 <h1>StaticPages#home</h1>
 <p>Find me in app/views/static_pages/home.html.erb</p>
+
+<% debugger %>
+
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.email %>!</p>
+<% else %>
+  <p>You are not signed in.</p>
+<% end %>
