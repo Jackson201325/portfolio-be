@@ -1,0 +1,19 @@
+<h1>Host::Listings#new</h1>
+<p>Find me in app/views/host/listings/new.html.erb</p>
+
+<h1>List your property</h1>
+
+<form action="/host/listings/" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="listing_title">Title</label>
+  <input type="text" name="listing[title]" id="title" value="<%= @listing.title %>">
+
+  <label for="about">About</label>
+  <textarea name="listing[about]" id="about"><%= @listing.about %></textarea>
+
+  <label for="about">Guest Number</label>
+  <input type="number" name="listing[guest_number]" id="guest_number" value="<%= @listing.max_guest %>" min=1 max="100" step="1">
+
+  <input type="submit" value="Create listing">
+</form>

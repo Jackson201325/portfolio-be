@@ -68,6 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -369,6 +372,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  annotate
   bootsnap
   byebug
   debug
@@ -396,7 +400,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.0.4p208
+   ruby 3.1.0p0
 
 BUNDLED WITH
    2.4.13
