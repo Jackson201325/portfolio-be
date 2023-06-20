@@ -8,11 +8,14 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <% maps_api_key = Rails.application.credentials.google[:maps_api_key] %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= maps_api_key %>&libraries=places&callback=initMap"  async defer data-turbolinks-eval="true"></script>
   </head>
 
   <body>
     <% if user_signed_in? %>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete%>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
     <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
