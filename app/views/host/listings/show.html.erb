@@ -1,0 +1,10 @@
+<h1>Host::Listings#show</h1>
+<p>Find me in app/views/host/listings/show.html.erb</p>
+
+<h1><%= @listing.title %></h1>
+
+<%= link_to "Edit", edit_host_listing_path(@listing) %>
+<%= link_to "All", host_listings_path %>
+<%= link_to "Delete", host_listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<pre><%= JSON.pretty_generate(@listing.as_json) %></pre>
