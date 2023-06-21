@@ -17,7 +17,8 @@ module Host
     end
 
     def create
-      @listing = current_user.listings.new(listing_create_update)
+      @listing = current_user.listings.new(listing_create_params)
+
       if @listing.save
         redirect_to host_listing_path(@listing)
       else
@@ -48,9 +49,9 @@ module Host
 
     private
 
-    def listing_create_update
+    def listing_create_params
       params.require(:listing).permit(:title, :about, :max_guest, :address_line1, :address_line2, :city, :state,
-                                      :postal_code, :country)
+                                      :postal_code, :country, :lng, :lat)
     end
 
     def listing_update_params

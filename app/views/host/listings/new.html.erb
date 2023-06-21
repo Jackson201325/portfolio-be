@@ -16,18 +16,18 @@
     <label for="address">Address</label>
     <input type="text" id="address" data-address-target="input" autocomplete="off">
 
-    <input type="hidden" name"listing[address_line1]" data-address-target="line1"/>
-    <input type="hidden" name"listing[address_line2]" data-address-target="line2"/>
-    <input type="hidden" name"listing[city]" data-address-target="city"/>
-    <input type="hidden" name"listing[state]" data-address-target="state"/>
-    <input type="hidden" name"listing[postal_code]" data-address-target="postal_code"/>
-    <input type="hidden" name"listing[country]" data-address-target="country"/>
-    <input type="hidden" name"listing[lat]" data-address-target="lat"/>
-    <input type="hidden" name"listing[lng]" data-address-target="lng"/>
+    <input type="hidden" id="address_line1" name="listing[address_line1]" data-address-target="line1"/>
+    <input type="hidden" name="listing[city]" data-address-target="city"/>
+    <input type="hidden" name="listing[address_line2]" id="address_line2" data-address-target="line2"/>
+    <input type="hidden" name="listing[state]" data-address-target="state"/>
+    <input type="hidden" name="listing[postal_code]" data-address-target="postal_code"/>
+    <input type="hidden" name="listing[country]" data-address-target="country"/>
+    <input type="hidden" name="listing[lat]" data-address-target="lat"/>
+    <input type="hidden" name="listing[lng]" data-address-target="lng"/>
   </div>
 
   <label for="about">Guest Number</label>
-  <input type="number" name="listing[guest_number]" id="guest_number" value="<%= @listing.max_guest %>" min=1 max="100" step="1">
+  <input type="number" name="listing[max_guest]" id="max_guest" value="<%= @listing.max_guest %>" min=1 max="100" step="1">
 
   <input type="submit" value="Create listing">
 </form>
