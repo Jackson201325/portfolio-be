@@ -25,5 +25,6 @@ class Listing < ApplicationRecord
   belongs_to :host, class_name: "User", foreign_key: "host_id"
   validates :title, presence: true
   validates :max_guest, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+
   enum status: { draft: 0, published: 1, archived: 2 }
 end
