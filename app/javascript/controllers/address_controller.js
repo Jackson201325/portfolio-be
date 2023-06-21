@@ -14,7 +14,11 @@ export default class extends Controller {
     "country",
   ];
 
-  connect() { }
+  connect() {
+    if (window.google) {
+      this.initGoogle();
+    }
+  }
 
   initGoogle() {
     this.autocomplete = new google.maps.places.Autocomplete(this.inputTarget, {
@@ -76,9 +80,10 @@ export default class extends Controller {
           break;
         }
 
-        case "country":
+        case "country": {
           this.countryTarget.value = component.short_name;
           break;
+        }
       }
     }
   }
