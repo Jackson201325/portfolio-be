@@ -20,7 +20,7 @@
 #  status        :integer          default("draft")
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#
+
 class Listing < ApplicationRecord
   belongs_to :host, class_name: "User", foreign_key: "host_id"
   validates :title, presence: true
