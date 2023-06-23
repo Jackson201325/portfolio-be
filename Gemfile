@@ -37,6 +37,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Auth
+gem "bullet"
 gem "devise", "~> 4.9"
 gem "omniauth"
 gem "omniauth-google-oauth2"
