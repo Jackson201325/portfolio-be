@@ -11,7 +11,7 @@
     <%= javascript_importmap_tags %>
 
     <% maps_api_key = Rails.application.credentials.google[:maps_api_key] %>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= maps_api_key %>&libraries=places&callback=initMap"  async defer data-turbolinks-eval="true"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= maps_api_key %>&libraries=places&callback=initMap" async defer data-turbolinks-eval="true"></script>
   </head>
 
   <body>
