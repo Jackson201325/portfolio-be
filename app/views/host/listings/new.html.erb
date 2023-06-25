@@ -1,33 +1,47 @@
-<h1>Host::Listings#new</h1>
-<p>Find me in app/views/host/listings/new.html.erb</p>
-
-<h1>List your property</h1>
+<p class="text-3xl">List your property</p>
 
 <form action="/host/listings/" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <div class="space-y-6">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="sm:col-span-3">
+      <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
+      <div class="mt-2">
+        <input type="text" name="listing[title]" id="title" value="<%= @listing.title %>" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      </div>
+    </div>
 
-  <label for="listing_title">Title</label>
-  <input type="text" name="listing[title]" id="title" value="<%= @listing.title %>" autocomplete="off">
+    <div class="sm:col-span-3">
+      <label for="about" class="block text-sm font-medium leading-6 text-gray-900">About</label>
+      <div class="mt-2">
+        <textarea name="listing[about]" id="about" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"><%= @listing.about %></textarea>
+      </div>
+    </div>
 
-  <label for="about">About</label>
-  <textarea name="listing[about]" id="about"><%= @listing.about %></textarea>
+    <div class="sm:col-span-3">
+      <label for="address" class="block text-sm font-medium leading-6 text-gray-900">Address</label>
+      <div class="mt-2" data-controller="address" data-action="map-loaded@window->address#initGoogle">
+        <input type="text" id="address" data-address-target="input" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
 
-  <div data-controller="address" data-action="map-loaded@window->address#initGoogle">
-    <label for="address">Address</label>
-    <input type="text" id="address" data-address-target="input" autocomplete="off">
+        <input type="hidden" name="listing[address_line1]" id="address_line1" data-address-target="line1">
+        <input type="hidden" name="listing[address_line2]" id="address_line2" data-address-target="line2">
+        <input type="hidden" name="listing[city]" data-address-target="city">
+        <input type="hidden" name="listing[country]" data-address-target="country">
+        <input type="hidden" name="listing[lat]" data-address-target="lat">
+        <input type="hidden" name="listing[lng]" data-address-target="lng">
+        <input type="hidden" name="listing[postal_code]" data-address-target="postal_code">
+        <input type="hidden" name="listing[state]" data-address-target="state">
+      </div>
+    </div>
 
-    <input type="hidden" name="listing[address_line1]" id="address_line1" data-address-target="line1">
-    <input type="hidden" name="listing[address_line2]" id="address_line2" data-address-target="line2">
-    <input type="hidden" name="listing[city]" data-address-target="city">
-    <input type="hidden" name="listing[country]" data-address-target="country">
-    <input type="hidden" name="listing[lat]" data-address-target="lat">
-    <input type="hidden" name="listing[lng]" data-address-target="lng">
-    <input type="hidden" name="listing[postal_code]" data-address-target="postal_code">
-    <input type="hidden" name="listing[state]" data-address-target="state">
+    <div class="sm:col-span-3">
+      <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Guest Number</label>
+      <div class="mt-2">
+        <input type="number" name="listing[max_guest]" id="max_guest" value="<%= @listing.max_guest %>" min=1 max="100" step="1" autocomplete="off" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+      <button type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Create Listing</button>
+    </div>
   </div>
-
-  <label for="about">Guest Number</label>
-  <input type="number" name="listing[max_guest]" id="max_guest" value="<%= @listing.max_guest %>" min=1 max="100" step="1" autocomplete="off">
-
-  <input type="submit" value="Create listing">
 </form>
