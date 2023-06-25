@@ -22,7 +22,7 @@ module Host
       if @listing.save
         redirect_to host_listing_path(@listing)
       else
-        flash.new[:errors] = @listing.errors.full_messages
+        flash.now[:errors] = @listing.errors.full_messages
         render :new
       end
     end
