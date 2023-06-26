@@ -43,6 +43,7 @@ gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
+gem "faker"
 gem "foreman", "~> 0.87.2"
 gem "tailwindcss-rails", "~> 2.0"
 
