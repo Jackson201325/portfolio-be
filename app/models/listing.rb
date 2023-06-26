@@ -22,9 +22,12 @@
 #  updated_at    :datetime         not null
 
 class Listing < ApplicationRecord
-  belongs_to :host, class_name: "User", foreign_key: "host_id"
   validates :title, presence: true
   validates :max_guest, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+
+  belongs_to :host, class_name: "User", foreign_key: "host_id"
+
+  has_many :rooms, dependent: :destroy
 
   enum status: { draft: 0, published: 1, archived: 2 }
 end
