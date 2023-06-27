@@ -29,5 +29,6 @@ class Listing < ApplicationRecord
 
   has_many :rooms, dependent: :destroy
 
-  enum status: { draft: 0, published: 1, archived: 2 }
+  enum status: { drafted: 0, published: 1, archived: 2 }
+
 end
