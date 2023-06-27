@@ -15,10 +15,9 @@ module Host
 
       if @room.save
         Rails.logger.info("Room created successfully")
-        # redirect_to host_listing_rooms_path(@listing)
+        redirect_to host_listing_rooms_path(@listing)
       else
         flash.now[:errors] = @room.errors.full_messages
-        # render :new
       end
     end
 
