@@ -22,8 +22,15 @@ module Host
     end
 
     def destroy
-      @room.destroy
-      Rails.logger.info("Room deleted successfully")
+      @listing = current_user.listings.find(params[:listing_id])
+      @room = @listing.rooms.find_by(id: params[:id])
+
+      if @room.destroy
+        Rails.logger.info("Room deleted successfully")
+        redirect_to host_listing_rooms_path(@listing)
+      else
+        flash.now[:errors] = @room.errors.full_messages
+      end
     end
 
     private
