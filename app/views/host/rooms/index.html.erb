@@ -12,6 +12,7 @@
           <% room.beds.each do |bed| %>
             <p class="mt-1 truncate text-sm text-gray-500"><%= bed.bed_type %></p>
           <% end %>
+          <%= button_to "delete", host_listing_room_path(@listing, room), :method => :delete %>
         </div>
       </div>
     </li>

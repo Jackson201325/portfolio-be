@@ -1,16 +1,36 @@
-<form action="<%= host_listing_rooms_path(@listing) %>" method="post">
-  <div class="space-y-6">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<div data-controller="room">
+
+  <template data-room-target="bed_form">
     <div>
-      <label for="room_type" class="block text-sm font-medium leading-6 text-gray-900">Room Type</label>
-      <select id="room_type" name="room[room_type]" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        <% Room.room_types.each do |room_type| %>
-          <option><%= room_type.first %></option>
+      <label for="bed_type" class="block text-sm font-medium leading-6 text-gray-900">Bed Types</label>
+      <select id="bed_type" name="room[beds_attributes][][bed_type]" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        <% Bed.bed_types.each do |bed_type, _| %>
+          <option><%= bed_type %></option>
         <% end %>
       </select>
     </div>
-    <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Create Room</button>
+  </template>
+
+  <form action="<%= host_listing_rooms_path(@listing) %>" method="post">
+    <div class="space-y-6">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div>
+        <label for="room_type" class="block text-sm font-medium leading-6 text-gray-900">Room Types</label>
+        <select id="room_type" name="room[room_type]" class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <% Room.room_types.each do |room_type, _| %>
+            <option><%= room_type %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <fieldset data-room-target="bed_form_container">
+        <legend>Beds</legend>
+      </fieldset>
+
+      <button data-action="click->room#addBed" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Add bed</button>
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Create Room</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
