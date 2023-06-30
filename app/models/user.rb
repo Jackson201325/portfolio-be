@@ -29,20 +29,16 @@
 #  name                   :string
 #
 class User < ApplicationRecord
-  include Devise::JWT::RevocationStrategies::JTIMatcher
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable, :jwt_authenticatable,
-         jwt_revocation_strategy: self,
-         omniauth_providers: [:google_oauth2]
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :listings, dependent: :destroy, foreign_key: "host_id"
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  # enum role: { guest: 0, host: 1 }
+  enum role: { guest: 0, host: 1 }
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -62,7 +58,5 @@ class User < ApplicationRecord
     user&.valid_password?(password) ? user : nil
   end
 
-  def jwt_paylod
-    super
-  end
+
 end
