@@ -3,7 +3,7 @@
 
 <%= link_to "Create Listing", new_host_listing_path %>
 
-<br/>
+<br>
 
 <% @listings.each do |l| %>
   <%= link_to l.title, host_listing_path(l) %>
