@@ -10,7 +10,7 @@ module DoorkeeperRegisterable
     end
   end
 
-  def render_user(user, client_app, _token_type = "Bearer")
+  def render_user(user, client_app, token_type = "Bearer")
     access_token =
       Doorkeeper::AccessToken.create(
         resource_owner_id: user.id,
@@ -19,10 +19,10 @@ module DoorkeeperRegisterable
         expires_in: Doorkeeper.configuration.access_token_expires_in.to_i,
         scopes: ""
       )
-    user_attributes(user, access_token)
+    user_attributes(user, access_token, token_type)
   end
 
-  def user_attributes(user, access_token)
+  def user_attributes(user, access_token, token_type)
     { id: user.id,
       email: user.email,
       role: user.role,
