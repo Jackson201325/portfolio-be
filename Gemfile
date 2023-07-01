@@ -41,6 +41,7 @@ gem "redis", "~> 4.0"
 # Auth
 gem "bullet"
 gem "devise", "~> 4.9"
+gem "doorkeeper"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
