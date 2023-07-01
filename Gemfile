@@ -39,18 +39,15 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Auth
+gem "bullet"
 gem "devise", "~> 4.9"
-gem "devise-jwt"
-gem "jsonapi-serializer"
-gem "jwt"
 gem "omniauth"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
-gem "rack-cors"
 
-gem "bullet"
 gem "faker"
 gem "foreman", "~> 0.87.2"
+gem "rack-cors"
 gem "tailwindcss-rails", "~> 2.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -89,5 +86,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
-gem "doorkeeper", "~> 5.6"

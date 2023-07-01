@@ -114,11 +114,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_112518) do
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.string "jti", null: false
     t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
