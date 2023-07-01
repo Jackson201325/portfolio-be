@@ -29,13 +29,10 @@
 #  name                   :string
 #
 class User < ApplicationRecord
-  include Devise::JWT::RevocationStrategies::JTIMatcher
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable, :jwt_authenticatable,
-         jwt_revocation_strategy: self,
+         :omniauthable,
          omniauth_providers: [:google_oauth2]
 
   has_many :listings, dependent: :destroy, foreign_key: "host_id"
@@ -60,9 +57,5 @@ class User < ApplicationRecord
   def self.authenticate(email, password)
     user = User.find_for_authentication(email: email)
     user&.valid_password?(password) ? user : nil
-  end
-
-  def jwt_paylod
-    super
   end
 end
