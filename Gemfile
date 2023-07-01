@@ -47,6 +47,7 @@ gem "omniauth-rails_csrf_protection"
 
 gem "faker"
 gem "foreman", "~> 0.87.2"
+gem "rack-cors"
 gem "tailwindcss-rails", "~> 2.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

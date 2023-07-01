@@ -29,14 +29,17 @@
 #  name                   :string
 #
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable,
-         :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable,
+         omniauth_providers: [:google_oauth2]
 
   has_many :listings, dependent: :destroy, foreign_key: "host_id"
+
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  enum role: { guest: 0, host: 1 }
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -49,5 +52,10 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def self.authenticate(email, password)
+    user = User.find_for_authentication(email: email)
+    user&.valid_password?(password) ? user : nil
   end
 end
