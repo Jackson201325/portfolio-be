@@ -30,4 +30,12 @@ class Listing < ApplicationRecord
   has_many :rooms, dependent: :destroy
 
   enum status: { draft: 0, published: 1, archived: 2 }
+
+  scope :published, -> { where(status: :published) }
+  scope :draft, -> { where(status: :draft) }
+  scope :archived, -> { where(status: :archived) }
+
+  def full_address
+    [address_line1, address_line2, city, state, postal_code, country].compact.join(" ")
+  end
 end
