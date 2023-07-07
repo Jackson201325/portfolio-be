@@ -27,6 +27,8 @@
 #  provider               :string
 #  uid                    :string
 #  name                   :string
+#  role                   :integer          default("guest")
+#
 
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
