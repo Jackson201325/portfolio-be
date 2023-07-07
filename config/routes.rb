@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :listings, only: %i[index show]
+
   draw :api
 end

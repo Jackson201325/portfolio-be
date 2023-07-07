@@ -1,0 +1,12 @@
+<div>
+  <h1 class="font-bold text-4xl">Listings#index</h1>
+  <p>Find me in app/views/listings/index.html.erb</p>
+
+  <p>@listings.size = <%= @listings.size %></p>
+
+  <ul>
+    <% @listings.each do |listing| %>
+      <li><%= link_to listing.title, listing_path(listing) %></li>
+    <% end %>
+  </ul>
+</div>
