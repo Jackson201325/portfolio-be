@@ -1,0 +1,12 @@
+<h1 class="text-3xl font-bold tracking-tight">Photos</h1>
+
+<form action="<%= host_listing_photos_path(@listing) %>" title="Upload Photos" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" autocomplete="off">
+
+  <label for="caption" name="Caption"> Caption </label>
+  <input type="text" name="photos[caption]" value="" id="photo[caption]" autocomplete="off">
+
+  <input type="file" name="photos[image]" data-direct-upload-url="<%= rails_direct_uploads_url %>" autocomplete="off">
+
+  <input type="submit" value="Upload">
+</form>
