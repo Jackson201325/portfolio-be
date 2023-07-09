@@ -48,6 +48,7 @@ gem "omniauth-rails_csrf_protection"
 
 gem "faker"
 gem "foreman", "~> 0.87.2"
+gem "image_processing", ">= 1.2"
 gem "rack-cors"
 gem "tailwindcss-rails", "~> 2.0"
 
@@ -80,7 +81,6 @@ group :development do
   gem "solargraph"
   gem "solargraph-rails"
   gem "web-console"
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

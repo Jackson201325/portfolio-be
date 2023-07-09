@@ -1,24 +1,26 @@
-<div>
-  <h1 class="font-bold text-4xl">Listings#show</h1>
-  <p>Find me in app/views/listings/show.html.erb</p>
+<h1 class="text-3xl font-bold tracking-tight">Show</h1>
 
-  <div>
-    <h4>Listing</h4>
-    <p>
-      <strong>Id:</strong>
-      <%= @listing.id %>
-    </p>
-    <p>
-      <strong>Title:</strong>
-      <%= @listing.title %>
-    </p>
-    <p>
-      <strong>Address:</strong>
-      <%= @listing.full_address %>
-    </p>
-    <p>
-      <strong>City:</strong>
-      <%= @listing.city %>
-    </p>
-  </div>
+<div>
+  <h4>Listing</h4>
+  <p>
+    <strong>Id:</strong>
+    <%= @listing.id %>
+  </p>
+  <p>
+    <strong>Title:</strong>
+    <%= @listing.title %>
+  </p>
+  <p>
+    <strong>Address:</strong>
+    <%= @listing.full_address %>
+  </p>
+  <p>
+    <strong>City:</strong>
+    <%= @listing.city %>
+  </p>
+  <% if @listing.photos.exists? %>
+    <% @listing.photos.each do |photo| %>
+      <%= image_tag photo.image.variant(resize_to_limit: [100,100]) %>
+    <% end %>
+  <% end %>
 </div>
