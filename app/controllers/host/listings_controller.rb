@@ -55,7 +55,7 @@ module Host
     end
 
     def listing_update_params
-      params.require(:listing).permit(:title, :about, :max_guest)
+      params.require(:listing).permit(:title, :about, :max_guest, :status)
     end
 
     def check_logged_in?
