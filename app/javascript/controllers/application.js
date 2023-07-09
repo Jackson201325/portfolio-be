@@ -1,6 +1,8 @@
+import * as ActiveStorage from "@rails/activestorage"
 import { Application } from "@hotwired/stimulus"
 
 const application = Application.start()
+ActiveStorage.start()
 
 // Configure Stimulus development experience
 application.debug = false
