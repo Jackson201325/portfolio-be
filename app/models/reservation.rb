@@ -2,16 +2,17 @@
 
 # == Schema Information
 #
-# Table name: photos
+# Table name: reservations
 #
 #  id         :bigint           not null, primary key
 #  listing_id :bigint           not null
-#  caption    :string
+#  guest_id   :bigint           not null
+#  session_id :string
+#  status     :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class Photo < ApplicationRecord
+class Reservation < ApplicationRecord
   belongs_to :listing
-
-  has_one_attached :image
+  belongs_to :guest
 end

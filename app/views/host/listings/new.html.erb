@@ -40,6 +40,18 @@
       </div>
     </div>
 
+    <div class="sm:col-spen-3">
+      <label class="block text-sm font-medium leading-6 text-gray-900" for="nightly_price">Nightly Rate</label>
+      <div class="mt-2">
+        <input type="number" name="listing[nightly_price]" id="nightly_price" value="<%= @listing.nightly_price %>" min=1 max="100" autocomplete="off">
+      </div>
+
+      <label class="block text-sm font-medium leading-6 text-gray-900" for="cleaning_fee">Cleaning fee</label>
+      <div class="mt-2">
+        <input type="number" name="listing[cleaning_fee]" id="cleaning_fee" value="<%= @listing.cleaning_fee %>" min=1 max="100" autocomplete="off">
+      </div>
+    </div>
+
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <button type="submit" class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Create Listing</button>
     </div>

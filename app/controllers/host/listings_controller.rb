@@ -51,11 +51,11 @@ module Host
 
     def listing_create_params
       params.require(:listing).permit(:title, :about, :max_guest, :address_line1, :address_line2, :city, :state,
-                                      :postal_code, :country, :lng, :lat)
+                                      :postal_code, :country, :lng, :lat, :nightly_price, :cleaning_fee)
     end
 
     def listing_update_params
-      params.require(:listing).permit(:title, :about, :max_guest, :status)
+      params.require(:listing).permit(:title, :about, :max_guest, :status, :nightly_price, :cleaning_fee)
     end
 
     def check_logged_in?

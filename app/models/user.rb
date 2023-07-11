@@ -28,6 +28,7 @@
 #  uid                    :string
 #  name                   :string
 #  role                   :integer          default("guest")
+#  stripe_customer_id     :string
 #
 
 class User < ApplicationRecord

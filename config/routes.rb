@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   use_doorkeeper
 
+  resources :reservation, only: %i[index show new create]
+
   namespace :host do
     resources :listings do
       resources :photos, only: %i[index new show create]

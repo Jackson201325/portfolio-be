@@ -2,19 +2,24 @@
 
 <%= render partial: "shared/errors" %>
 
-
 <form action="/host/listings/<%= @listing.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PUT">
 
   <label for="title">Title</label>
-  <input type="text" name="listing[title]" id="title" value="<%= @listing.title %>">
+  <input type="text" name="listing[title]" id="title" value="<%= @listing.title %>" autocomplete="off">
 
   <label for="about">About</label>
-  <input type="text" name="listing[about]" id="about" value="<%= @listing.about %>"/>
+  <input type="text" name="listing[about]" id="about" value="<%= @listing.about %>" autocomplete="off">
 
   <label for="number">Guest Number</label>
-  <input type="number" name="listing[max_guest]" id="max_guest" value="<%= @listing.max_guest %>" min=1 max="100" step="1">
+  <input type="number" name="listing[max_guest]" id="max_guest" value="<%= @listing.max_guest %>" min=1 max="100" autocomplete="off">
+
+  <label for="number">Nightly Rate</label>
+  <input type="number" name="listing[nightly_price]" id="nightly_price" value="<%= @listing.nightly_price %>" min=1 max="100" autocomplete="off">
+
+  <label for="number">Cleaning fee</label>
+  <input type="number" name="listing[cleaning_fee]" id="cleaning_fee" value="<%= @listing.cleaning_fee %>" min=1 max="100" autocomplete="off">
 
   <label for="status">Guest Number</label>
   <select name="listing[status]" value="<%= @listing.status %>">

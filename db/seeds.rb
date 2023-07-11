@@ -23,6 +23,8 @@ me = User.find_or_create_by!(email: "jackson@test.com", password: "blackjack21")
     listing.state = Faker::Address.state
     listing.country = "US"
     listing.status = :published
+    listing.nightly_price = rand(1..100)
+    listing.nightly_price = rand(1..20)
   end
 end
 
@@ -43,6 +45,8 @@ end
       listing.state = Faker::Address.state
       listing.country = "US"
       listing.status = :published
+      listing.nightly_price = rand(1..100)
+      listing.nightly_price = rand(1..20)
     end
   end
 end
