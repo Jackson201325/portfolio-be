@@ -38,7 +38,10 @@ class User < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
+  after_commit :maybe_create_stripe_customer, on: %i[create update]
+
   has_many :listings, dependent: :destroy, foreign_key: "host_id"
+  has_many :reservations, dependent: :destroy, foreign_key: "guest_id"
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
@@ -97,4 +100,15 @@ class User < ApplicationRecord
   #   end
   #   @doorkeeper
   # end
+  #
+  def maybe_create_stripe_customer
+    return if stripe_customer_id.present?
+
+    customer = Stripe::Customer.create(
+      email: email,
+      name: name,
+      metadata: { clearbnb_id: id }
+    )
+    update stripe_customer_id: customer.id
+  end
 end

@@ -14,5 +14,7 @@
 #
 class Reservation < ApplicationRecord
   belongs_to :listing
-  belongs_to :guest
+  belongs_to :guest, class_name: "User", foreign_key: "guest_id"
+
+  enum status: { pending: 0, confirmed: 1, cancelled: 2 }
 end

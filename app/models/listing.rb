@@ -28,10 +28,12 @@
 class Listing < ApplicationRecord
   validates :title, presence: true
   validates :max_guest, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
-  validates :nightly_price, numericality: { greater_than: 0, less_than_or_equal_to: 10_000 }
-  validates :cleaning_fee, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 10_000 }
+  validates :nightly_price, numericality: { greater_than: 0, less_than_or_equal_to: 1_000_000 }
+  validates :cleaning_fee, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1_000_000 }
 
   belongs_to :host, class_name: "User", foreign_key: "host_id"
+
+  after_commit :maybe_create_stripe_product, on: %i[create update]
 
   has_many :rooms, dependent: :destroy
   has_many :photos, dependent: :destroy
@@ -45,5 +47,16 @@ class Listing < ApplicationRecord
 
   def full_address
     [address_line1, address_line2, city, state, postal_code, country].compact.join(" ")
+  end
+
+  def maybe_create_stripe_product
+    return if stripe_listing_id.present?
+
+    product = Stripe::Product.create(
+      name: title,
+      url: Rails.application.routes.url_helpers.listing_url(self),
+      metadata: { clearbnb_id: id }
+    )
+    update stripe_listing_id: product.id
   end
 end

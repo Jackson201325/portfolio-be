@@ -25,8 +25,10 @@ module Host
       @listing = current_user.listings.find(params[:listing_id])
       @room = @listing.rooms.find_by(id: params[:id])
 
+      redirect_to host_listing_rooms_path(@listing)
+      Rails.logger.info("Room deleted successfully")
       if @room.destroy
-        Rails.logger.info("Room deleted successfully")
+        Rails.logger.info("Room created successfully")
         redirect_to host_listing_rooms_path(@listing)
       else
         flash.now[:errors] = @room.errors.full_messages

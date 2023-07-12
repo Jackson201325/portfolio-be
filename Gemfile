@@ -50,6 +50,7 @@ gem "faker"
 gem "foreman", "~> 0.87.2"
 gem "image_processing", ">= 1.2"
 gem "rack-cors"
+gem "stripe"
 gem "tailwindcss-rails", "~> 2.0"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

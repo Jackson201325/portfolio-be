@@ -1,14 +1,13 @@
 # frozen_string_literal: true
-#
+
 class ReservationsController < ApplicationController
-  def new
-  end
+  before_action :authenticate_user!
 
-  def index
-  end
+  def new; end
 
-  def show
-  end
+  def index; end
+
+  def show; end
 
   def create
     @reservation = current_user.reservations.new(reservations_params)
@@ -25,22 +24,31 @@ class ReservationsController < ApplicationController
             price_data: {
               unit_amount: listing.nightly_price,
               currency: "usd",
-              product: listing.stripe_product_id
+              product: listing.stripe_listing_id
             },
             quantity: 1
           },
           {
             price_data: {
-              unit_amount: listing.nightly_price,
+              unit_amount: listing.cleaning_fee,
               currency: "usd",
-              product: ""
+              product: "prod_OFHFlxgEdRQv6h"
             },
             quantity: 1
           }
-        ]
+        ],
+        metadata: {
+          reservation_id: @reservation.id
+        },
+        payment_intent_data: {
+          metadata: {
+            reservation_id: @reservation.id
+          }
+        }
       )
 
-      redirect_to(checkout_session.url)
+      @reservation.update(session_id: checkout_session.id)
+      redirect_to checkout_session.url, allow_other_host: true
     else
       flash[:errors] = @reservation.errors.full_messages
       redirect_to(listing_path(params([:reservation][:listing_id])))

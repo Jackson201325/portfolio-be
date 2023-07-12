@@ -2,7 +2,6 @@
 
 <h1><%= @listing.title %></h1>
 
-<%= link_to "Edit details", edit_host_listing_path(@listing) %>
 <%= link_to "All", host_listings_path %>
 <%= link_to "Delete", host_listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } %>
 <%= link_to "Edit Rooms", edit_host_listing_path(@listing) %>
