@@ -6,29 +6,32 @@ class EventJob < ApplicationJob
   def perform(event)
     case event.source
     when "stripe"
-      stripe_event = Strip::Event.construct_from(
-        Json.parse(event.request_body, symbolize_names: true)
+      stripe_event = Stripe::Event.construct_from(
+        JSON.parse(event.request_body, symbolize_names: true)
       )
       begin
         handle_stripe_event(stripe_event)
-        stripe_event.update(event_type: event.type, status: :processed, error_message: "")
+        event.update(event_type: stripe_event.type, status: :success, error_messages: "")
       rescue StandardError => e
         event.update(
-          error_message: "Error while handling Stripe event: #{e.message}",
+          error_messages: "Error while handling Stripe event: #{e.message}",
           status: :failed
         )
       end
     else
-      event.update(error_message: "Unknown event source: #{event.source}")
+      event.update(error_messages: "Unknown event source: #{event.source}")
     end
   end
 
   def handle_stripe_event(event)
     case event.type
-    when "checktout.session.completed"
-      chekout_session = event.data.object
-      puts "Checkout session Id: #{chekout_session.id}"
-      puts "Checkout session Metadata: #{chekout_session.metadataa}"
+    when "checkout.session.completed"
+      checkout_session = event.data.object
+      reservation = Reservation.find_by(session_id: checkout_session.id)
+
+      raise "Reservation not found for checkout session: #{checkout_session.id}" if reservation.nil?
+
+      reservation.update(status: :confirmed, stripe_payment_intent_id: checkout_session.payment_intent)
     end
   end
 end

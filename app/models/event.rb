@@ -6,7 +6,7 @@
 #
 #  id             :bigint           not null, primary key
 #  request_body   :text
-#  status         :integer          default(0)
+#  status         :integer          default("pending")
 #  error_messages :text
 #  source         :string
 #  event_type     :string
