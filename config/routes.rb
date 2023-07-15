@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   use_doorkeeper
 
-  resources :reservations, only: %i[index show new create]
+  resources :reservations, only: %i[index show new create] do
+    member do
+      post '/cancel', to: 'reservations#cancel'
+    end
+  end
   post '/webhooks/:source', to: 'webhooks#create'
 
   namespace :host do

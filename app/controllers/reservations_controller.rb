@@ -2,10 +2,19 @@
 
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :current_reservation, only: %i[cancel show]
 
   def new; end
 
   def index; end
+
+  def cancel
+    refund = Stripe::Refund.create({ payment_intent: @reservation.stripe_payment_intent_id })
+
+    @reservation.update(stripe_refund_id: refund.id, status: :refunding)
+
+    redirect_to reservation_path(@reservation)
+  end
 
   def show; end
 
@@ -59,5 +68,9 @@ class ReservationsController < ApplicationController
 
   def reservations_params
     params.require(:reservation).permit(:listing_id)
+  end
+
+  def current_reservation
+    @reservation = current_user.reservations.find(params[:id])
   end
 end
