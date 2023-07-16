@@ -1,0 +1,16 @@
+<h1 class="text-3xl font-bold tracking-tight">Merchant Settings</h1>
+
+<% if current_user.stripe_account_id.blank? %>
+  <p class="text_gray-600">
+    You have not connected your Stripe account yet.
+  </p>
+  <p class="text-gray-600">
+    <a href="/host/merchant_settings/connect">
+      Connect your Stripe Account
+    </a>
+  </p>
+<% else %>
+  Stripe Account: <%= current_user.stripe_account_id %>
+
+  Charges enabled: <%= current_user.charges_enabled ? "Yes" : "No" %>
+<% end %>

@@ -5,4 +5,5 @@
   <p>Welcome, <%= current_user.email %>!</p>
 <% else %>
   <p>You are not signed in.</p>
+  <%= link_to "Login", new_user_session_url %>
 <% end %>

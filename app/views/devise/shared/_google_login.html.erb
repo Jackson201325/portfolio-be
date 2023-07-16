@@ -13,7 +13,30 @@
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
           <%= omniauth_authorize_path(resource_name, provider) %>
-          <%= button_to "Sign in with Google", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "text-white text-center w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2" %><br>
+          <%= button_to "Sign in with Google",
+            omniauth_authorize_path(resource_name, provider),
+            data: { turbo: false },
+            class: "
+              text-white
+              text-center
+              w-full
+              bg-[#4285F4]
+              hover:bg-[#4285F4]/90
+              focus:ring-4
+              focus:outline-none
+              focus:ring-[#4285F4]/50
+              font-medium
+              rounded-lg
+              text-sm
+              px-5
+              py-2.5
+              text-center
+              items-center
+              justify-between
+              dark:focus:ring-[#4285F4]/55
+              mr-2 mb-2
+            " %>
+        <br>
         <% end %>
       <% end %>
     </div>

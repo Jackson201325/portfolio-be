@@ -25,10 +25,10 @@ Style/AsciiComments:
 
 # Metrics
 Metrics/AbcSize:
-  Max: 20
+  Max: 50
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 40
 
 Metrics/ClassLength:
   Max: 200

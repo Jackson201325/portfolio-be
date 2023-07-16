@@ -3,8 +3,8 @@
 <h1><%= @listing.title %></h1>
 
 <%= link_to "All", host_listings_path %>
+<%= link_to "Add photos", host_listing_photos_path(@listing) %>
 <%= link_to "Delete", host_listing_path(@listing), method: :delete, data: { confirm: "Are you sure?" } %>
 <%= link_to "Edit Rooms", edit_host_listing_path(@listing) %>
-<%= link_to "Edit photos", listing_photos_path(@lisiting) %>
 
 <pre><%= JSON.pretty_generate(@listing.as_json) %></pre>

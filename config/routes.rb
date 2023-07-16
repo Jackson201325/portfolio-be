@@ -18,12 +18,18 @@ Rails.application.routes.draw do
 
   resources :reservations, only: %i[index show new create] do
     member do
-      post '/cancel', to: 'reservations#cancel'
+      post "/cancel", to: "reservations#cancel"
     end
   end
-  post '/webhooks/:source', to: 'webhooks#create'
+  post "/webhooks/:source", to: "webhooks#create"
 
   namespace :host do
+    resources :merchant_settings do
+      collection do
+        get "/connect", to: "merchant_settings#connect"
+        get "/connected", to: "merchant_settings#connected"
+      end
+    end
     resources :listings do
       resources :photos, only: %i[index new show create]
       resources :rooms, only: %i[index create destroy]
