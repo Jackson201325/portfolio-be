@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     current_user.present?
   end
 
+  post "/test_sign_in", to: "sessions#test_sign_in"
   constraints resque_web_constraint do
     mount Resque::Server, at: "/jobs"
   end

@@ -14,8 +14,8 @@ Doorkeeper.configure do
   # end
 
   resource_owner_from_credentials do
-    User.authenticate(params[:email], params[:password])
-    # curent_user || warden.authenticate!(scope: :user) || User.authenticate(params[:email], params[:password])
+    # User.authenticate(params[:email], params[:password])
+    curent_user || warden.authenticate!(scope: :user) || User.authenticate(params[:email], params[:password])
   end
 
   grant_flows %w[password]

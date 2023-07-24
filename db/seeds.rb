@@ -11,20 +11,23 @@ if Doorkeeper::Application.count.zero?
   Doorkeeper::Application.find_or_create_by!(name: "Mobile client", redirect_uri: "", scopes: "")
 end
 
-me = User.find_or_create_by!(email: "jackson@test.com", password: "blackjack21")
+user = User.new(email: "jackson@test.com")
+user.password = "blackjack21"
+user.password_confirmation = "blackjack21"
+user.save!
 
 10.times do
   listing = Listing.find_or_create_by!(title: Faker::Vehicle.make_and_model) do |listing|
-    listing.host = me
+    listing.host = user
     listing.about = Faker::Lorem.paragraph
-    listing.max_guests = rand(1..5)
+    listing.max_guest = rand(1..5)
     listing.address_line1 = Faker::Address.street_address
     listing.city = Faker::Address.city
     listing.state = Faker::Address.state
     listing.country = "US"
     listing.status = :published
     listing.nightly_price = rand(1..100)
-    listing.nightly_price = rand(1..20)
+    listing.cleaning_fee = rand(1..20)
   end
 end
 
@@ -39,14 +42,14 @@ end
     listing = Listing.find_or_create_by!(title: Faker::Vehicle.make_and_model) do |listing|
       listing.host = host_user
       listing.about = Faker::Lorem.paragraph
-      listing.max_guests = rand(1..5)
+      listing.max_guest = rand(1..5)
       listing.address_line1 = Faker::Address.street_address
       listing.city = Faker::Address.city
       listing.state = Faker::Address.state
       listing.country = "US"
       listing.status = :published
       listing.nightly_price = rand(1..100)
-      listing.nightly_price = rand(1..20)
+      listing.cleaning_fee = rand(1..20)
     end
   end
 end
