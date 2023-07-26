@@ -28,12 +28,20 @@ user.save!
     listing.status = :published
     listing.nightly_price = rand(1..100)
     listing.cleaning_fee = rand(1..20)
+
+    rand(1..3).times do
+      listing.rooms.find_or_create_by!(room_type: rand(0..3)) do |room|
+        rand(1..3).times do
+          room.beds.find_or_create_by!(bed_type: rand(0..5))
+        end
+      end
+    end
   end
 end
 
 10.times do
   host_user = User.find_or_create_by!(email: Faker::Internet.email) do |user|
-    user.password = Faker::Internet.password
+    user.password = "blakcjack21"
     user.email = Faker::Internet.email
     user.name = Faker::Games::LeagueOfLegends.champion
   end
@@ -50,6 +58,14 @@ end
       listing.status = :published
       listing.nightly_price = rand(1..100)
       listing.cleaning_fee = rand(1..20)
+
+      rand(1..3).times do
+        listing.rooms.find_or_create_by!(room_type: rand(0..3)) do |room|
+          rand(1..3).times do
+            room.beds.find_or_create_by!(bed_type: rand(0..5))
+          end
+        end
+      end
     end
   end
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   post "/test_sign_in", to: "sessions#test_sign_in"
+
   constraints resque_web_constraint do
     mount Resque::Server, at: "/jobs"
   end
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       post "/cancel", to: "reservations#cancel"
     end
   end
+
   post "/webhooks/:source", to: "webhooks#create"
 
   namespace :host do
