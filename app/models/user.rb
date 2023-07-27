@@ -29,6 +29,9 @@
 #  name                   :string
 #  role                   :integer          default("guest")
 #  stripe_customer_id     :string
+#  is_host                :integer          default(0)
+#  stripe_account_id      :string
+#  charges_enabled        :boolean          default(FALSE)
 #
 
 class User < ApplicationRecord

@@ -25,6 +25,11 @@ class EventJob < ApplicationJob
 
   def handle_stripe_event(event)
     case event.type
+    when "account.updated"
+      account = event.data.object
+      puts "Account updated: #{account.enabled}"
+      user = User.find_by(stripe_account_id: account.id)
+      user.update(charges_enabled: account.charges_enabled)
     when "checkout.session.completed"
       checkout_session = event.data.object
       reservation = Reservation.find_by(session_id: checkout_session.id)

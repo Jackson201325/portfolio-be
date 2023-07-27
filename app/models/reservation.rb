@@ -12,6 +12,7 @@
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  stripe_payment_intent_id :string
+#  stripe_refund_id         :string
 #
 class Reservation < ApplicationRecord
   belongs_to :listing
