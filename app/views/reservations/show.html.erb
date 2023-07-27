@@ -1,9 +1,9 @@
 <h1 class="text-3xl font-bold tracking-tight"><%= @reservation.listing.title %></h1>
 
-<pre><%= JSON.pretty_generate(@reservation.json) %></pre>
+<pre><%= JSON.pretty_generate(@reservation.as_json) %></pre>
 
 <form action="<%= cancel_reservation_path(@reservation) %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="reservation[listing_id]" value="<%= @listing.id %>">
+  <input type="hidden" name="reservation[listing_id]" value="<%= @reservation.listing.id %>">
   <input type="submit" value="Cancel Reservation">
 </form>
