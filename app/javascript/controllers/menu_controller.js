@@ -11,7 +11,6 @@ export async function leave(element, transitionName = null) {
 }
 
 export async function toggle(element, transitionName = null) {
-  console.log(element.classList)
   if (element.classList.contains("hidden")) {
     await enter(element, transitionName);
   } else {
